@@ -1,29 +1,35 @@
-// Last updated: 8/19/2025, 1:59:37 PM
+// Last updated: 8/19/2025, 2:21:04 PM
 class Solution {
 public:
-    int searchInsert(vector<int>& nums, int target) {
-        int n = nums.size();
-        int start =0,end = n-1,mid=0;
+    int search(vector<int>& arr, int target) {
+        int mid,start=0,end=arr.size()-1;
         while(start<=end){
-            mid=(start+end)/2;
-            if(nums[mid]==target){
+            mid= end+(start-end)/2;
+            if(arr[mid]==target){
                 return mid;
-                break;
             }
-            else if(nums[mid]<target){
-                start = mid+1;
-            }
+            else if(arr[mid]>arr[start]){
+                if(target < arr[mid] && target >= arr[start]){
+                end=mid-1;
 
-            else {
-                end = mid -1;
+                }
+                else{
+                start=mid+1;
+                }
             }
+            else{
+                if(target > arr[mid] && target <= arr[end]){
+                start=mid+1;
+
+                }
+                else{
+                end=mid-1;
+                }
+            }
+            
         }
-        
-        return start;
-        }
+        return -1;
 
         
-        
-
-    
+    }
 };
