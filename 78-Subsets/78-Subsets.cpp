@@ -1,24 +1,32 @@
-// Last updated: 8/11/2025, 7:50:55 PM
+// Last updated: 8/23/2025, 2:54:35 PM
 class Solution {
 public:
-
-    void susbseq(vector<int>& nums,int index,int n,vector<vector<int> >&ans,vector<int>temp){
-        if(index == n){
-        ans.push_back(temp);
-        return;}
-
-        susbseq(nums,index+1,n,ans,temp);
-        temp.push_back(nums[index]);
-        susbseq(nums,index+1,n,ans,temp);
+    void permutation(vector<int>&nums,vector<vector<int>>& ans,vector<bool>& visited,vector<int>& temp){
+        if(visited.size()==temp.size()){
+            ans.push_back(temp);
+            return ;
+            
+        }
+        for(int i=0;i<visited.size();i++){
+            if(visited[i]==0){
+                visited[i]=1;
+                temp.push_back(nums[i]);
+                permutation(nums,ans,visited,temp);
+                visited[i]=0;
+                temp.pop_back();
+            }
+        }
     }
-    vector<vector<int>> subsets(vector<int>& nums) {
-
-        vector<vector<int> >ans;
-        vector<int>temp;
-        susbseq(nums,0,nums.size(),ans,temp);
-
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector <bool> visited(nums.size(),0);
+        vector <vector<int>> ans;
+        vector <int> temp;
+        
+        permutation(nums,ans,visited,temp);
         return ans;
+
 
         
     }
+
 };
