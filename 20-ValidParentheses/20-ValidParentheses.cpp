@@ -1,43 +1,37 @@
-// Last updated: 8/26/2025, 2:07:11 PM
-#include <stack>
-#include <string>
+// Last updated: 8/26/2025, 2:43:52 PM
 
-class Solution {
+class MyQueue {
+private:
+    stack<int> s1;
+    stack<int> s2;
+
 public:
-    bool isValid(std::string s) {
-        // This check is a good optimization.
-        if (s.size() % 2 != 0) {
-            return false;
-        }
+    MyQueue() {}
 
-        // Using a stack of 'char' is more semantically correct.
-        std::stack<char> p;
-
-        for (const char c : s) {
-            // If it's an opening bracket, push it onto the stack.
-            // Use single quotes for characters.
-            if (c == '(' || c == '{' || c == '[') {
-                p.push(c);
-            }
-            // If it's a closing bracket...
-            else {
-                // ...first check if the stack is empty. If so, there's no matching opener.
-                if (p.empty()) {
-                    return false;
-                }
-                
-                // ...if the stack is not empty, check if the top is the matching opener.
-                if ((c == ')' && p.top() == '(') ||
-                    (c == '}' && p.top() == '{') ||
-                    (c == ']' && p.top() == '[')) {
-                    p.pop(); // If they match, pop the opener from the stack.
-                } else {
-                    // If they don't match, the string is invalid.
-                    return false;
-                }
-            }
+    void push(int x) {
+        while (!s1.empty()) {
+            s2.push(s1.top());
+            s1.pop();
         }
-        // If the stack is empty at the end, all brackets were matched.
-        return p.empty();
+        s1.push(x);
+        while (!s2.empty()) {
+            s1.push(s2.top());
+            s2.pop();
+        }
+    }
+
+    int pop() {
+        int temp = s1.top();
+        s1.pop();
+        return temp;
+    }
+
+    int peek() {
+        return s1.top();
+    }
+
+    bool empty() {
+        return s1.empty();
     }
 };
+
