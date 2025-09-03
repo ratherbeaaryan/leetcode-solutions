@@ -1,22 +1,21 @@
-// Last updated: 9/3/2025, 9:33:03 AM
+// Last updated: 9/3/2025, 10:01:28 AM
 class Solution {
 public:
-    bool checkIfPangram(string sentence) {
-        vector<bool> seen(26,false);
-        for(char c:sentence){
-            if(c>='a' && c<='z'){
-            seen[c-'a']=true;}
-
+    bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2) {
+        string s = "";
+        string e = "";
+        for(int i=0;i<word1.size();i++){
+            s = s + word1[i];
+        }
+        for(int j=0;j<word2.size();j++){
+            e = e + word2[j];
         }
 
-        for(bool present:seen){
-            if(!present){
-                return false;
-            }
+        
+        if(s==e){
+            return true;
         }
-        return true;
 
-        
-        
+        return false;
     }
 };
