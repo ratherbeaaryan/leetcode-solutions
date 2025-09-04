@@ -1,26 +1,19 @@
-// Last updated: 9/4/2025, 3:11:17 PM
+// Last updated: 9/4/2025, 3:13:22 PM
 class Solution {
 public:
     int appendCharacters(string s, string t) {
-        int n = s.size();
-        int m = t.size();
-        int i = 0;
+        int i= 0 ;
         int j =0;
-        int append = m;
-
-        while(i<n && j<m){
-        if(s[i]==t[j]){
-            append--;
-            i++;
-            j++;
-
+        while (i<s.length() && j<t.length()){
+            if(s[i] == t[j]){
+                i++;
+                j++;
+            }
+            else{
+                i++;
+            }
         }
-        if(s[i]!=t[j]){
-            i++;
-        }
-        }
-        return append;
-
         
+        return t.length() -j;
     }
 };
