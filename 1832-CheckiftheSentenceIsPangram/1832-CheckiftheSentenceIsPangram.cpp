@@ -1,21 +1,21 @@
-// Last updated: 9/3/2025, 10:01:28 AM
+// Last updated: 9/6/2025, 3:19:17 AM
 class Solution {
 public:
-    bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2) {
-        string s = "";
-        string e = "";
-        for(int i=0;i<word1.size();i++){
-            s = s + word1[i];
-        }
-        for(int j=0;j<word2.size();j++){
-            e = e + word2[j];
-        }
-
+    bool repeatedSubstringPattern(string s) {
+        int n = s.size();
+        for(int l=n/2;l>0;l--){
+            if(n%l==0){
+            int times = n/l;
+            string pattern = s.substr(0,l);
+            string newp = "";
+            while(times--){
+                newp+=pattern;
+            }
+            if(newp == s){
+                return true;
+            }
+                }    }
+                return false; 
         
-        if(s==e){
-            return true;
-        }
-
-        return false;
     }
 };
