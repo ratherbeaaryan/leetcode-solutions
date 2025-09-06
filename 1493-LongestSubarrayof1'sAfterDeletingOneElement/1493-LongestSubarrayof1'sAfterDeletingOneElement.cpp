@@ -1,23 +1,30 @@
-// Last updated: 8/24/2025, 3:38:36 PM
+// Last updated: 9/7/2025, 1:44:23 AM
 class Solution {
 public:
     int longestSubarray(vector<int>& nums) {
-        int left = 0, right = 0, zeroCount = 0, maxLen = 0;
-        while (right < nums.size()) {
-            if (nums[right] == 0) {
-                zeroCount++;
+        int left = 0;
+        int maxi = 0;
+        int zerocount = 0;
+        int sum=0;
+        for(int right = 0;right<nums.size();right++){
+            if(nums[right]==0){
+                zerocount++;
             }
-            while (zeroCount > 1) {
-                if (nums[left] == 0) {
-                    zeroCount--;
+            
+
+            while(zerocount>1){
+                if(nums[left]==0){
+                    zerocount--;
                 }
                 left++;
             }
-            maxLen = max(maxLen, right - left);
-            right++;
+
+            maxi = max(maxi,right-left);
+
+            
         }
-        return maxLen;
+        
+        return maxi;
+        
     }
 };
-
-auto init = atexit([]() { ofstream("display_runtime.txt") << "0"; });
