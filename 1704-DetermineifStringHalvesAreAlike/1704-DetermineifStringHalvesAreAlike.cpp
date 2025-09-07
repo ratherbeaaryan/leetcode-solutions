@@ -1,28 +1,44 @@
-// Last updated: 9/7/2025, 8:56:37 AM
+// Last updated: 9/7/2025, 9:19:16 AM
 class Solution {
 public:
-    bool halvesAreAlike(string s) {
-            int n = s.size();
-            int j = n/2;
-            int i =0;
-            int cleft = 0;
-            int cright =0;
-            while(i<n/2 && j<n){
-                if(s[i]=='a'||s[i]=='e'||s[i]=='i'||s[i]=='o'||s[i]=='u'||s[i]=='A'||s[i]=='E'||s[i]=='I'||s[i]=='O'||s[i]=='U'){
-                    cleft++;
-
-                }if(s[j]=='a'||s[j]=='e'||s[j]=='i'||s[j]=='o'||s[j]=='u'||s[j]=='A'||s[j]=='E'||s[j]=='I'||s[j]=='O'||s[j]=='U'){
-                    cright++;
-
-                }
-                i++;
-                j++;
-            }
-            if(cleft == cright){
-                return true;
-            }
+    bool closeStrings(string word1, string word2) {
+        int n = word1.length();
+        int m = word2.length();
+        vector<int> freq1(26);
+        vector<int> freq2(26);
+        if(n!=m){
             return false;
-               
+        }
+        for(int i=0;i<n;i++){
+            char ch = word1[i];
+            int index = ch-'a';
+            freq1[index]++;
+        }
+        for(int i=0;i<m;i++){
+            char ch = word2[i];
+            int index2 = ch-'a';
+            freq2[index2]++;
+        }
+        for(int i=0;i<26;i++){
+            if(freq1[i]!=0 && freq2[i]!=0){
+                continue;
+            }
+             if(freq1[i]==0 && freq2[i]==0){
+                continue;
+            }
+            
+                return false;
 
+        
+            
+        }
+        sort(begin(freq1),end(freq1));
+        sort(begin(freq2),end(freq2));
+
+        if(freq1==freq2){
+            return true;
+        }
+        return false;
+        
     }
 };
