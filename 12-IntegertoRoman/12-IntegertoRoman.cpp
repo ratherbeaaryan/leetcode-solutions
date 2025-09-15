@@ -1,15 +1,32 @@
-// Last updated: 9/15/2025, 11:41:00 AM
+// Last updated: 9/15/2025, 12:24:28 PM
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
 class Solution {
 public:
-    string intToRoman(int num) {
-        string ones[] = {"","I","II","III","IV","V","VI","VII","VIII","IX"};
-        string tens[] = {"","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"};
-        string hundreds[] = {"","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"};
-        string thsd[] = {"","M","MM","MMM"};
-        
-        return thsd[num/1000] + hundreds[(num%1000)/100] + tens[(num%100)/10] + ones[num%10];
+    ListNode* oddEvenList(ListNode* head) {
+        if(head==NULL){
+            return head;
+        }
+        ListNode* odd = head;
+        ListNode* even = head->next;
+        ListNode* temp = head->next;
 
+        while(even!=NULL && even->next!=NULL){
+            odd->next = even->next;
+            even->next = even->next->next;
+            odd=odd->next;
+            even = even->next;
+        }
+        odd->next = temp;
         
-        
+        return head;
     }
 };
