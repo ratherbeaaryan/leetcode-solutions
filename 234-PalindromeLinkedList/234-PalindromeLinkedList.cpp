@@ -1,4 +1,4 @@
-// Last updated: 9/20/2025, 11:20:12 AM
+// Last updated: 9/20/2025, 11:36:06 AM
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -24,7 +24,7 @@ public:
 
         // move temp to the middle
         temp = head;
-        int count_first = count / 2;   // correct midpoint
+        int count_first = (count+1) / 2;   // correct midpoint
         while(count_first > 0){
             temp = temp->next;
             count_first--;
