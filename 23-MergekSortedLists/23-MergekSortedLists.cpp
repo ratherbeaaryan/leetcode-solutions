@@ -1,4 +1,4 @@
-// Last updated: 9/18/2025, 10:47:06 AM
+// Last updated: 9/22/2025, 11:55:03 AM
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -11,31 +11,48 @@
  */
 class Solution {
 public:
-    ListNode* Head;
-    Solution(ListNode* head) {
-        Head = head;
-        
+ListNode* mergetwosortedlists(ListNode* l1, ListNode* l2){
+    if(l1 == NULL ){
+        return l2;
     }
-    
-    int getRandom() {
-        int count = 1;
-        int result = 0;
-        ListNode* temp = Head;
-        
-        while(temp!=NULL){
-            if(rand()%count < 1.0/count){
-                result = temp->val;
-            }
-            count++;
-            temp = temp->next;
+    if(l2 ==NULL){
+        return l1;
+    }
+
+    if(l1->val<=l2->val){
+        l1->next = mergetwosortedlists(l1->next,l2);
+        return l1;
+    }
+    else{
+        l2->next = mergetwosortedlists(l1,l2->next);
+        return l2;
+    }
+}
+    ListNode* partition(int start,int end,vector<ListNode*> lists){
+        if(start==end) return lists[start];
+        int mid = start+(end-start)/2;
+
+        ListNode* l1 = partition(start,mid,lists);
+        ListNode* l2 = partition(mid+1,end,lists);
+
+        return mergetwosortedlists(l1,l2);
+    }
+
+
+    ListNode* mergeKLists(vector<ListNode*>& lists) {
+
+        int n = lists.size();
+        int start = 0;
+        int end = n-1;
+
+        if(n==0){
+            return NULL;
         }
-        return result;
+
+        return partition(start,end,lists);
+
+
+
         
     }
 };
-
-/**
- * Your Solution object will be instantiated and called as such:
- * Solution* obj = new Solution(head);
- * int param_1 = obj->getRandom();
- */
