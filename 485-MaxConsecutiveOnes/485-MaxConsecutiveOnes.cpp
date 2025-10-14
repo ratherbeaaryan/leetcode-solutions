@@ -1,4 +1,4 @@
-// Last updated: 8/1/2025, 11:39:59 PM
+// Last updated: 10/14/2025, 11:10:58 AM
 class Solution {
 public:
     int findMaxConsecutiveOnes(vector<int>& nums) {
