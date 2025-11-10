@@ -1,12 +1,11 @@
-// Last updated: 11/11/2025, 12:56:47 AM
+// Last updated: 11/11/2025, 1:43:08 AM
 class Solution {
 public:
-    int largestRectangleArea(vector<int>& heights) {
+    int rectangle(vector<int>& heights){
         int n = heights.size();
         vector<int> right(n);
         vector<int> left(n);
         stack<int> st;
-
         for(int i=0;i<n;i++){
             while(!st.empty() && heights[st.top()] > heights[i]){
                 right[st.top()] = i;
@@ -17,8 +16,8 @@ public:
         while(!st.empty()){
             right[st.top()] = n;
             st.pop();
-
         }
+
         for(int i=n-1;i>=0;i--){
             while(!st.empty() && heights[st.top()] > heights[i]){
                 left[st.top()] = i;
@@ -29,16 +28,36 @@ public:
         while(!st.empty()){
             left[st.top()] = -1;
             st.pop();
-
         }
-
-        int ans=0;
+        int ans = 0;
         for(int i=0;i<n;i++){
-            ans = max(ans, heights[i]*(right[i]-left[i]-1));
-        }
+            ans = max(ans,heights[i]*(right[i]-left[i]-1));
 
+        }
         return ans;
 
+    } 
+    int maximalRectangle(vector<vector<char>>& matrix) {
+        int row = matrix.size();
+        int col = matrix[0].size();
+
+        vector<int> height(col,0);
+        int answer = 0;
+
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(matrix[i][j]=='0'){
+                    height[j] = 0;
+                }
+                else{
+                    height[j] += 1;
+                }
+            }
+            answer = max(answer, rectangle(height));
+
+
+        }
+        return answer;
         
     }
 };
