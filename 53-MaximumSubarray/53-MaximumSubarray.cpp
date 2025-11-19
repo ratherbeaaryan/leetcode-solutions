@@ -1,22 +1,15 @@
-// Last updated: 11/19/2025, 9:32:28 AM
+// Last updated: 11/19/2025, 9:37:48 AM
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-        int maxSum = INT_MIN;
-        int currentSum = 0;
-        
-        for (int i = 0; i < nums.size(); i++) {
-            currentSum += nums[i];
-            
-            if (currentSum > maxSum) {
-                maxSum = currentSum;
-            }
-            
-            if (currentSum < 0) {
-                currentSum = 0;
-            }
+        int maxCount=INT_MIN, temp=0;
+        for(int i=0; i<nums.size(); i++){
+            temp+=nums[i];
+            if(temp <nums[i]) temp = nums[i];
+            if(maxCount<temp) maxCount = temp; 
         }
-        
-        return maxSum;
+        return maxCount;
     }
 };
+// comparing sum with current element. 
+// if smaller than current element then leave all the previous counts.
