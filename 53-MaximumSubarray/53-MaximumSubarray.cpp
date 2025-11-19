@@ -1,15 +1,22 @@
-// Last updated: 11/19/2025, 9:37:48 AM
+// Last updated: 11/19/2025, 10:04:49 AM
 class Solution {
 public:
-    int maxSubArray(vector<int>& nums) {
-        int maxCount=INT_MIN, temp=0;
-        for(int i=0; i<nums.size(); i++){
-            temp+=nums[i];
-            if(temp <nums[i]) temp = nums[i];
-            if(maxCount<temp) maxCount = temp; 
+    int minSwaps(string s) {
+        int balance = 0, swaps = 0;
+        for(char c:s){
+            if(c=='['){
+                balance++;
+            }
+            else{
+                balance--;
+            }
+
+            if(balance<0){
+                swaps++;
+                balance = 1;
+            }
         }
-        return maxCount;
+        return swaps;
     }
+    
 };
-// comparing sum with current element. 
-// if smaller than current element then leave all the previous counts.
