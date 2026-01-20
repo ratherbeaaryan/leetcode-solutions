@@ -1,49 +1,28 @@
-// Last updated: 8/19/2025, 2:46:32 PM
-class Solution {
-public:
-    vector<int> searchRange(vector<int>& arr, int target) {
-        int n = arr.size();
-        int start = 0;
-        int end = n-1;
-        int first = -1;
-        int last = -1;
-        int mid;
-        int ar[2];
-        while(start<=end){
-            mid = end +(start-end)/2;
-            if(arr[mid]==target){
-                first = mid;
-                end = mid-1;
-
-            }
-            else if(arr[mid]>target){
-                end = mid -1;
-            }
-            else{
-                start = mid+1;
-            }
-        }
-
-
-        start =0;
-        end = n-1;
-        while(start<=end){
-            mid = end +(start-end)/2;
-            if(arr[mid]==target){
-                last = mid;
-                start = mid+1;
-
-            }
-            else if(arr[mid]>target){
-                end = mid -1;
-            }
-            else{
-                start = mid+1;
-            }
-        }
-        vector<int> a(2);
-        a[0]=first;
-        a[1]=last;
-        return a;
-    }
-};
+// Last updated: 1/20/2026, 3:48:46 PM
+1class Solution {
+2public:
+3    int search(vector<int>& arr, int target) {
+4        int mid, start = 0, end = arr.size() - 1;
+5        while (start <= end) {
+6            mid = end + (start - end) / 2;
+7            if (arr[mid] == target) {
+8                return mid;
+9            } else if (arr[mid] > arr[start]) {
+10                if (target < arr[mid] && target >= arr[start]) {
+11                    end = mid - 1;
+12
+13                } else {
+14                    start = mid + 1;
+15                }
+16            } else {
+17                if (target > arr[mid] && target <= arr[end]) {
+18                    start = mid + 1;
+19
+20                } else {
+21                    end = mid - 1;
+22                }
+23            }
+24        }
+25        return -1;
+26    }
+27};
