@@ -1,4 +1,4 @@
-// Last updated: 1/28/2026, 12:11:28 PM
+// Last updated: 1/28/2026, 12:16:37 PM
 1/**
 2 * Definition for a binary tree node.
 3 * struct TreeNode {
@@ -12,18 +12,18 @@
 11 */
 12class Solution {
 13public:
-14    void dfs(TreeNode* root,int level,vector<int> &result){
-15        if(!root) return;
-16        if(level == result.size()){
-17            result.push_back(root->val);
-18        }
-19        dfs(root->right,level+1,result);
-20        dfs(root->left,level+1,result);
-21    }
-22    
-23    vector<int> rightSideView(TreeNode* root) {
-24        vector<int> result;
-25        dfs(root,0,result);
-26        return result;
+14    int maxDepth(TreeNode* root) {
+15        if(!root){
+16            return 0;
+17        }
+18
+19        
+20
+21
+22        int l = maxDepth(root->left);
+23        int r = maxDepth(root->right);
+24
+25        return 1+max(l,r);
+26        
 27    }
 28};
