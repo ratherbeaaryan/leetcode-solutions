@@ -1,28 +1,21 @@
-// Last updated: 1/29/2026, 10:28:33 PM
+// Last updated: 1/29/2026, 10:41:58 PM
 1class Solution {
 2public:
-3int t[46];
-4int solve(int n){
-5    if(n<0){
-6            return 0;
-7        }
-8        if(n==0){
-9            return 1;
-10        }
-11        if(t[n]!=-1){
-12            return t[n];
-13        }
-14        int onestep = solve(n-1);
-15        int twostep = solve(n-2);
-16
-17        return t[n] = onestep+twostep;
-18}
-19    int climbStairs(int n) {
-20        memset(t,-1,sizeof(t));
-21        return solve(n);
-22        
-23    }
-24
-25
-26};
-27/// DP mai ek baar firse solve krenge
+3    int climbStairs(int n) {
+4        if( n==1||n==2 || n==3){
+5            return n;
+6        }
+7        vector<int> t(n+1);
+8        
+9
+10        t[0] = 0;
+11        t[1] = 1;
+12        t[2] = 2;
+13
+14        for(int i=3;i<=n;i++){
+15            t[i] = t[i-1] + t[i-2];
+16        }
+17        return t[n];
+18        
+19    }
+20};
