@@ -1,0 +1,31 @@
+// Last updated: 8/4/2026, 12:55:46 AM
+class Solution {
+public:
+    int minOperations(string s) {
+        int n = s.size();
+        int start0 = 0;
+        int start1 = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (i % 2 == 0) {
+                if (s[i] != '0') {
+                    start0++;
+                }
+            } else {
+                if (s[i] != '1') {
+                    start0++;
+                }
+            }
+            if (i % 2 == 0) {
+                if (s[i] != '1') {
+                    start1++;
+                }
+            } else {
+                if (s[i] != '0') {
+                    start1++;
+                }
+            }
+        }
+        return min(start1,start0);
+    }
+};
